@@ -1,0 +1,22 @@
+int sensorPin = A0;   // LM35 output connected to A0
+float tempC;          // To store temperature in °C
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  int adcValue = analogRead(sensorPin);  // Read ADC (0–1023)
+  
+  // Convert ADC value to voltage (5V system)
+  float voltage = adcValue * (5.0 / 1023.0);
+
+  // Convert voltage to temperature (10 mV = 1°C)
+  tempC = voltage * 100;   // because 1°C = 0.01V
+
+  Serial.print("Temperature: ");
+  Serial.print(tempC);
+  Serial.println(" °C");
+
+  delay(1000);
+}
