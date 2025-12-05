@@ -1,0 +1,17 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+// Use your module address (0x27 or 0x3F are common)
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  lcd.init();          // initialize
+  lcd.backlight();     // turn on backlight
+  lcd.print("I2C LCD Demo");
+  lcd.setCursor(0,1);
+  lcd.print("Hello via I2C");
+}
+
+void loop() {
+  // add whatever you want to display
+}
