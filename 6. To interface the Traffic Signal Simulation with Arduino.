@@ -1,0 +1,28 @@
+// Simple blocking one-signal traffic light example
+const int RED_PIN    = 8;
+const int YELLOW_PIN = 9;
+const int GREEN_PIN  = 10;
+
+void setup() {
+  pinMode(RED_PIN, OUTPUT);
+  pinMode(YELLOW_PIN, OUTPUT);
+  pinMode(GREEN_PIN, OUTPUT);
+}
+
+void loop() {
+  // GREEN
+  digitalWrite(GREEN_PIN, HIGH);
+  digitalWrite(RED_PIN, LOW);
+  digitalWrite(YELLOW_PIN, LOW);
+  delay(10000); // green 10s
+
+  // YELLOW
+  digitalWrite(GREEN_PIN, LOW);
+  digitalWrite(YELLOW_PIN, HIGH);
+  delay(2000);  // yellow 2s
+
+  // RED
+  digitalWrite(YELLOW_PIN, LOW);
+  digitalWrite(RED_PIN, HIGH);
+  delay(10000); // red 10s
+}
