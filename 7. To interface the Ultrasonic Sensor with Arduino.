@@ -1,0 +1,36 @@
+const int trigPin = 9;      // Trigger pin of ultrasonic sensor
+const int echoPin = 10;     // Echo pin of ultrasonic sensor
+
+long duration;              // Time taken for echo
+float distance;             // Calculated distance
+
+void setup() {
+  Serial.begin(9600);        // Start serial communication
+  pinMode(trigPin, OUTPUT);  // Trig pin as output
+  pinMode(echoPin, INPUT);   // Echo pin as input
+}
+
+void loop() {
+
+  // Step 1: Clear the trig pin
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  // Step 2: Send a 10 microsecond pulse to trigger
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Step 3: Read echo pulse duration
+  duration = pulseIn(echoPin, HIGH);
+
+  // Step 4: Convert duration to distance (cm)
+  distance = (duration * 0.034) / 2;
+
+  // Step 5: Display distance
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  delay(500);  // Read every 0.5 seconds
+}
